@@ -5,6 +5,7 @@
 #include <cctype>
 using namespace std;
 
+
 // Morse code 매핑
 unordered_map<char, string> morse_map = {
     {'A', ".-"},   {'B', "-..."}, {'C', "-.-."}, {'D', "-.."},
