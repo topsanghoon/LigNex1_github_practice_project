@@ -1,0 +1,19 @@
+name: 🐞 Bug Report
+description: 버그를 보고합니다
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: "재현 방법"
+      description: "버그를 재현하려면 어떤 과정을 거쳐야 하나요?"
+  - type: textarea
+    id: expected
+    attributes:
+      label: "기대했던 결과"
+  - type: textarea
+    id: actual
+    attributes:
+      label: "실제 결과"
+

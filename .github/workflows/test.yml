@@ -1,0 +1,59 @@
+name: C++ CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      # Install cpplint
+      - name: Install cpplint
+        run: pip install cpplint
+
+      # Run cpplint on all source files
+      - name: Run cpplint
+        run: |
+          cpplint --recursive src/ || true
+
+      # Build individual solutions
+      - name: Build individual problems
+        run: |
+          for dir in src/*/ ; do
+            if [ -f "$dir/4101.cpp" ]; then
+              echo "Compiling $dir/4101.cpp ..."
+              g++ -std=c++17 "$dir/4101.cpp" -o "$dir/4101.out"
+            fi
+          done
+
+      # Build collaborative Morse project
+      - name: Build Morse project
+        run: |
+          if [ -f src/morse.cpp ]; then
+            g++ -std=c++17 src/morse.cpp -o src/morse.out
+          fi
+
+      # Run tests
+      - name: Run tests
+        run: |
+          cd tests
+          ./test_4101.sh || true
+          ./test_mos.sh || true
+
+  # Extra job only for main branch
+  main-branch-tests:
+    if: github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Morse project (main branch strict)
+        run: |
+          g++ -std=c++17 src/morse.cpp -o src/morse.out
+      - name: Run Morse tests (strict)
+        run: |
+          cd tests
+          ./test_mos.sh
+
