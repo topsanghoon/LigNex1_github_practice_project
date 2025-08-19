@@ -35,9 +35,8 @@ jobs:
         run: |
           if [ -f tests/test_mos.sh ]; then
             echo "🚀 Running test_mos.sh ..."
-            cd tests
-            chmod +x test_mos.sh
-            ./test_mos.sh || true   # 실패해도 전체 job 실패 아님
+            chmod +x tests/test_mos.sh
+            ./tests/test_mos.sh || true   # 실패해도 전체 job 실패 아님
           else
             echo "⚠️ tests/test_mos.sh not found!"
           fi
