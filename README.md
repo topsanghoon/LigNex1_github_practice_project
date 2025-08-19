@@ -16,12 +16,12 @@ C 언어를 기반으로 간단한 유틸 함수와 테스트 코드를 작성�
 ---
 
 ## 📂 디렉토리 구조
-repo/
-├─ include/ # 헤더 파일(.h)
-├─ src/ # 기본 함수 구현 + participants/ (팀원별 함수)
-├─ tests/ # 테스트 코드
-├─ scripts/ # 빌드/테스트 스크립트
-└─ .github/ # PR 템플릿, Actions 워크플로우
+repo/   
+├─ include/ # 헤더 파일(.h)   
+├─ src/ # 기본 함수 구현 + participants/ (팀원별 함수)   
+├─ tests/ # 테스트 코드   
+├─ scripts/ # 빌드/테스트 스크립트   
+└─ .github/ # PR 템플릿, Actions 워크플로우   
 
 ---
 
