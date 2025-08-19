@@ -17,21 +17,29 @@ jobs:
       # Run cpplint on all source files (src/ 전체 검사)
       - name: Run cpplint
         run: |
-          cpplint --recursive src/ || true
+          cpplint --recursive src/ || true   # 경고는 무시 (실패 아님)
 
       # Build Morse project
       - name: Build Morse project
         run: |
           if [ -f src/morse.cpp ]; then
+            echo "🔨 Compiling morse.cpp ..."
             g++ -std=c++17 src/morse.cpp -o src/morse.out
+          else
+            echo "❌ src/morse.cpp not found!"
+            exit 1
           fi
 
-      # Run Morse tests (optional: 테스트 스크립트 있으면 실행)
+      # Run Morse tests (optional for all branches)
       - name: Run Morse tests
         run: |
           if [ -f tests/test_mos.sh ]; then
-            chmod +x tests/test_mos.sh
-            ./tests/test_mos.sh || true
+            echo "🚀 Running test_mos.sh ..."
+            cd tests
+            chmod +x test_mos.sh
+            ./test_mos.sh || true   # 실패해도 전체 job 실패 아님
+          else
+            echo "⚠️ tests/test_mos.sh not found!"
           fi
 
   # Extra job only for main branch (strict: 테스트 실패 시 머지 불가)
@@ -40,11 +48,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Build Morse project (main branch strict)
         run: |
           g++ -std=c++17 src/morse.cpp -o src/morse.out
-      - name: Run Morse tests (strict)
+
+      - name: Run Morse tests (strict, must pass)
         run: |
-          chmod +x tests/test_mos.sh
-          ./tests/test_mos.sh
+          cd tests
+          chmod +x test_mos.sh
+          ./test_mos.sh
 
