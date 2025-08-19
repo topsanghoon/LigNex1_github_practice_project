@@ -84,3 +84,77 @@ ssh -T git@github.com
 git clone <ssh 경로>
 ```
 
+### 주요 Git 명령어
+
+1. 변경 사항 관리
+```bash
+git status               # 현재 상태 확인
+git add <파일명>         # 특정 파일 staging
+git add .                # 모든 변경 staging
+git commit -m "메시지"   # 커밋 생성
+```
+
+2. 원격 저장소와 동기화
+```bash
+git pull origin main     # 원격 변경사항 가져오기
+git push origin main     # 로컬 변경사항 업로드
+```
+
+3. 브랜치 관리
+```bash
+새 브랜치 생성 & 전환
+git branch feature/morse    # 브랜치 생성
+git checkout feature/morse  # 브랜치 전환
+# 또는
+git checkout -b feature/morse  # 생성 + 전환 동시에
+```
+
+4. 브랜치 목록
+```bash
+git branch         # 로컬 브랜치
+git branch -r      # 원격 브랜치
+git branch -a      # 전체 브랜치
+```
+
+5. 브랜치 삭제
+```bash
+git branch -d feature/morse   # 로컬 브랜치 삭제 (병합된 경우만)
+git branch -D feature/morse   # 강제 삭제
+git push origin --delete feature/morse  # 원격 브랜치 삭제
+```
+
+6. 병합 & 충돌 해결
+```bash
+브랜치 병합
+git checkout main
+git merge feature/morse
+
+충돌 발생 시:
+
+충돌된 파일에 <<<<<<<, =======, >>>>>>> 부분을 수정.
+
+수정 후 다시 add & commit.
+
+git add <파일명>
+git commit -m "충돌 해결"
+```
+
+7. 이전 버전 되돌리기
+```bash
+특정 파일 되돌리기
+git checkout HEAD~1 -- <파일명>
+```
+
+8. 커밋 되돌리기 (되돌린 기록도 남김)
+```bash
+git revert <커밋ID>
+
+커밋 자체 삭제 (주의⚠)
+git reset --hard <커밋ID>   # 해당 시점 이후 기록 삭제
+
+stash (작업 임시 저장)
+git stash           # 현재 작업 임시 저장
+git stash list      # 저장된 목록 확인
+git stash apply     # 최근 stash 복원
+git stash drop      # stash 삭제
+```
