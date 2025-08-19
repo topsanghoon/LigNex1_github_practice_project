@@ -1,14 +1,10 @@
 #!/bin/bash
 
-# 현재 디렉토리명 추출 (예: Collaboration)
-USER_DIR=$(basename "$(pwd)")
-SRC_FILE="morse.cpp"
-EXE_FILE="morse.out"
-OUTPUT_FILE="output.txt"
+SRC_FILE="src/morse.cpp"
+EXE_FILE="src/morse.out"
+OUTPUT_FILE="src/output.txt"
 
-echo "🔨 Compiling $SRC_FILE from $USER_DIR ..."
-
-# 컴파일
+echo "🔨 Compiling $SRC_FILE ..."
 g++ -std=c++17 -O2 -o "$EXE_FILE" "$SRC_FILE"
 if [ $? -ne 0 ]; then
     echo "❌ Compilation failed!"
@@ -18,7 +14,7 @@ echo "✅ Compilation succeeded!"
 
 echo "🚀 Running Morse code tests..."
 
-# 테스트 입력 (단일 줄 + 다중 줄)
+# 테스트 입력
 inputs=(
 "HELLO
 END"
@@ -40,7 +36,7 @@ HELLO
 END"
 )
 
-# 기대 출력 (output.txt 기준)
+# 기대 출력
 expected=(
 ".... . .-.. .-.. ---
 HELLO"
@@ -73,10 +69,12 @@ pass=0
 for ((i=0; i<total; i++)); do
     echo -n "Test $((i+1))/$total ... "
 
-    # 프로그램 실행 → output.txt 생성 (덮어쓰기)
-    echo "${inputs[$i]}" | ./$EXE_FILE > /dev/null
+    # 프로그램 실행 → output.txt 생성 (현재 폴더에)
+    echo "${inputs[$i]}" | "$EXE_FILE" > /dev/null
 
-    # output.txt 읽기
+    # output.txt 가 src에 있도록 강제로 이동
+    mv -f output.txt "$OUTPUT_FILE" 2>/dev/null
+
     if [ ! -f "$OUTPUT_FILE" ]; then
         echo "❌ FAIL (output.txt not found)"
         continue
