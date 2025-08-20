@@ -31,6 +31,26 @@ void loadMorseTable() {
     fin.close();
 }
 
+void StringToMorse(const vector<string>& input_string){
+
+	for(int i=0;i<input_string.size();i++){
+		string temp;
+		for(char c:input_string[i]){
+			c = toupper(c);
+			if(c==' '){
+				temp+="/ ";
+			}
+			temp+=charToMorse[c] +" ";
+		}
+		temp.pop_back();
+		morse_answer.push_back(temp);
+	}
+
+	for(string s: morse_answer){
+		cout<<s<<endl;
+	}
+}
+
 void morseToString() {
     string_answer.clear(); 
 
@@ -44,6 +64,9 @@ void morseToString() {
         else {
             string_answer.push_back("?");  
         }
+    }
+    for(auto s:string_answer){
+        cout<<s<<endl;
     }
 }
 
@@ -68,6 +91,7 @@ int main(){
 	}
   
   loadMorseTable();
+  StringToMorse(input_string);
   morseToString();
   int cnt=0;
   while(cnt < input_string.size())
