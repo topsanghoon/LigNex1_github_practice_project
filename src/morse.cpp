@@ -31,32 +31,45 @@ void loadMorseTable() {
     fin.close();
 }
 
-void morseToString() {
-    string_answer.clear(); 
+void StringToMorse(const vector<string>& input_string){
 
-    for (const auto& code : morse_answer) {
-        if (code == "/") {
-            string_answer.push_back(" "); 
-        }
-        else if (morseToChar.find(code) != morseToChar.end()) {
-            string_answer.push_back(string(1, morseToChar[code]));  
-        }
-        else {
-            string_answer.push_back("?");  
-        }
-    }
+	for(int i=0;i<input_string.size();i++){
+		string temp;
+		for(char c:input_string[i]){
+			c = toupper(c);
+			if(c==' '){
+				temp+="/ ";
+				continue;
+			}
+			temp+=charToMorse[c] +" ";
+		}
+		temp.pop_back();
+		morse_answer.push_back(temp);
+	}
 }
 
-void saveResult(string input, string morse){
-    ofstream fout("output.txt", ios::out | ios::app);  
-    if (!fout.is_open()) {
-        cerr << "Error: cannot open output.txt for writing\n";
-        return;
+
+void morseToString() {
+    string_answer.clear();
+
+    stringstream ss(morse);
+    string code;
+    string result;
+    while(const auto& code : morse_answer) {
+        if(code == "/") {
+            string_answer.push_back(" ");
+        } else if(morseToChar.find(code) != morseToChar.end()) {
+            string_answer.push_back(string(1, morseToChar[code]));
+        } else {
+            string_answer.push_back("?");
+        }
+	
     }
-    fout << input << '\n' << morse << '\n';
+    
 }
 
 int main(){
+
 	vector<string> input_string;
 	while(1){
 		string temp;
@@ -68,16 +81,7 @@ int main(){
 	}
   
   loadMorseTable();
-  morseToString();
-  int cnt=0;
-  while(cnt < input_string.size())
-  {
-        saveResult(morse_answer[cnt],string_answer[cnt]);
-
-        cnt++;
-  }
 
 	return 0;
 }
-
 
