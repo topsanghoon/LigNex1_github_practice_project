@@ -6,7 +6,7 @@
 #include <fstream>
 
 using namespace std;
-unordered_map<char,string> morse_list;
+
 unordered_map<char, string> charToMorse;
 unordered_map<string, char> morseToChar;
 
@@ -20,7 +20,7 @@ void loadMorseTable() {
     char letter;
     string code;
     while (fin >> letter >> code) {
-        morse_list[letter] = code;
+        charToMorse[letter] = code;
     }
     fin.close();
 
@@ -39,14 +39,6 @@ string stringToMorse(string s) {
 }
 
 string morseToString(const string& morse) {
-
-    unordered_map<string, char> morseToChar = {
-        {".-", 'A'}, {"-...", 'B'}, {"-.-.", 'C'}, {"-..", 'D'},
-        {".", 'E'}, {"..-.", 'F'}, {"--.", 'G'}, {"....", 'H'},
-        {"..", 'I'}, {".---", 'J'}, {"-.-", 'K'}, {".-..", 'L'},
-        {"--", 'M'}, {"-.", 'N'}, {"---", 'O'}, {".--.", 'P'},
-        {"--.-", 'Q'}, {".-.", 'R'}, {"...", 'S'}, {"-", 'T'}
-    };
 
     stringstream ss(morse);
     string code;
