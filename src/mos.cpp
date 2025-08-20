@@ -3,27 +3,41 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-using namespace std;
+#include <fstream>
 
+using namespace std;
+unordered_map<char,string> morse_list;
 unordered_map<char, string> charToMorse;
 unordered_map<string, char> morseToChar;
 
+void loadMorseTable() {
+    ifstream fin("../include/morse.txt");
+    if (!fin.is_open()) {
+        cerr << "Error: cannot open morse.txt" << endl;
+        return;
+    }
 
-void loadMorseTable(){
+    char letter;
+    string code;
+    while (fin >> letter >> code) {
+        morse_list[letter] = code;
+    }
+    fin.close();
 
 }
 
 
-string stringToMorse(string s){
+string stringToMorse(string s) {
 
-	string ret_string;
-	for(char c: s){
-		ret_string += charToMorse[c];
-	}
+    string ret_string;
+    for (char c : s) {
+        ret_string += charToMorse[c];
+    }
 
-	return ret_string;
+    return ret_string;
 
 }
+
 string morseToString(const string& morse) {
 
     unordered_map<string, char> morseToChar = {
@@ -51,7 +65,9 @@ string morseToString(const string& morse) {
 void saveResult(string input, string morse, string output){
 
 }
+
 int main(){
 
+    return 0;
 
 }
