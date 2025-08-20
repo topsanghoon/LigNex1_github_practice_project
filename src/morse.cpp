@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -8,6 +7,9 @@ using namespace std;
 
 unordered_map<char, string> charToMorse;
 unordered_map<string, char> morseToChar;
+
+vector<string> morse_answer;
+vector<string> string_answer;
 
 void loadMorseTable() {
     ifstream fin("../include/morse.txt");
@@ -28,6 +30,25 @@ void loadMorseTable() {
     fin.close();
 }
 
+void morseToString() {
+    string_answer.clear();
+
+    stringstream ss(morse);
+    string code;
+    string result;
+    while(const auto& code : morse_answer) {
+        if(code == "/") {
+            string_answer.push_back(" ");
+        } else if(morseToChar.find(code) != morseToChar.end()) {
+            string_answer.push_back(string(1, morseToChar[code]));
+        } else {
+            string_answer.push_back("?");
+        }
+	
+    }
+    
+}
+
 int main(){
 
 	vector<string> input_string;
@@ -44,3 +65,4 @@ int main(){
 
 	return 0;
 }
+
