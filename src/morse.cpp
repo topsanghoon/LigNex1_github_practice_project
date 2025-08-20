@@ -9,7 +9,7 @@ unordered_map<char, string> charToMorse;
 unordered_map<string, char> morseToChar;
 
 void loadMorseTable() {
-    ifstream fin("../include/morse.txt"); // src 기준 상대경로
+    ifstream fin("../include/morse.txt");
 
     if (!fin.is_open()) {
         cerr << "Error: cannot open morse.txt" << endl;
@@ -31,4 +31,5 @@ void loadMorseTable() {
 int main() {
     loadMorseTable();
     return 0;
+
 }
