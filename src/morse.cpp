@@ -17,6 +17,7 @@ void StringToMorse(){
 			c = toupper(c);
 			if(c==' '){
 				temp+="/ ";
+				continue;
 			}
 			temp+=charToMorse[c] +" ";
 		}
