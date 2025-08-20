@@ -10,16 +10,10 @@ unordered_map<string, char> morseToChar;
 
 
 void loadMorseTable(){
-cout<<"hi check out"<<'\n;
-cout<<"hi check out"<<'\n;
-cout<<"hi check out"<<'\n;
-cout<<"hi check out"<<'\n;
-cout<<"hi check out"<<'\n;
-cout<<"hi check out"<<'\n;
-cout<<"hi check out"<<'\n;
-cout<<"hi check out"<<'\n;
 
 }
+
+
 string stringToMorse(string s){
 
 	string ret_string;
