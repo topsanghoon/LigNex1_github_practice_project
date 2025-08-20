@@ -1,20 +1,16 @@
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <unordered_map>
-#include<vector>
-
+#include <vector>
 using namespace std;
 
 unordered_map<char, string> charToMorse;
 unordered_map<string, char> morseToChar;
-vector<string> morse_answer;  // 변환된 모스부호가 저장되는 전역변수
-vector<string> string_answer; // 변환된 문자열이 저장되는 전역변수
 
-void loadMorseTable();
-void StringToMorse(const vector<string>& input_string);
+vector<string> morse_answer;
+vector<string> string_answer;
 
 void loadMorseTable() {
     ifstream fin("../include/morse.txt");
@@ -35,7 +31,6 @@ void loadMorseTable() {
     fin.close();
 }
 
-
 void StringToMorse(const vector<string>& input_string){
 
 	for(int i=0;i<input_string.size();i++){
@@ -54,6 +49,25 @@ void StringToMorse(const vector<string>& input_string){
 }
 
 
+void morseToString() {
+    string_answer.clear();
+
+    stringstream ss(morse);
+    string code;
+    string result;
+    while(const auto& code : morse_answer) {
+        if(code == "/") {
+            string_answer.push_back(" ");
+        } else if(morseToChar.find(code) != morseToChar.end()) {
+            string_answer.push_back(string(1, morseToChar[code]));
+        } else {
+            string_answer.push_back("?");
+        }
+	
+    }
+    
+}
+
 int main(){
 
 	vector<string> input_string;
@@ -66,7 +80,8 @@ int main(){
 
 	}
   
-
+  loadMorseTable();
 
 	return 0;
 }
+
