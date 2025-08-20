@@ -12,5 +12,4 @@ int main(){
         }
         cin >> a >> b;
     }
-
 }
