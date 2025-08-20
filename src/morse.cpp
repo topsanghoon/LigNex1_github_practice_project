@@ -6,7 +6,6 @@
 
 using namespace std;
 
-
 unordered_map<char, string> charToMorse;  // key: 문자, value: key값에 매핑되는 모스부호
 vector<string> morse_answer;  // 변환된 모스부호가 저장되는 전역변수
 
