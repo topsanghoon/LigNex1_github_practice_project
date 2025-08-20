@@ -62,8 +62,13 @@ string morseToString(const string& morse) {
     }
     return result;
 }
-void saveResult(string input, string morse, string output){
-
+void saveResult(string input, string morse){
+    ofstream fout("output.txt", ios::out | ios::app);  
+    if (!fout.is_open()) {
+        cerr << "Error: cannot open output.txt for writing\n";
+        return;
+    }
+    fout << input << '\n' << morse << '\n';
 }
 
 int main(){
