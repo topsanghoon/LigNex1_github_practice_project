@@ -32,20 +32,18 @@ void loadMorseTable() {
 }
 
 void morseToString() {
-    string_answer.clear();
+    string_answer.clear(); 
 
-    stringstream ss(morse);
-    string code;
-    string result;
-    while(const auto& code : morse_answer) {
-        if(code == "/") {
-            string_answer.push_back(" ");
-        } else if(morseToChar.find(code) != morseToChar.end()) {
-            string_answer.push_back(string(1, morseToChar[code]));
-        } else {
-            string_answer.push_back("?");
+    for (const auto& code : morse_answer) {
+        if (code == "/") {
+            string_answer.push_back(" "); 
         }
-	
+        else if (morseToChar.find(code) != morseToChar.end()) {
+            string_answer.push_back(string(1, morseToChar[code]));  
+        }
+        else {
+            string_answer.push_back("?");  
+        }
     }
 }
 
