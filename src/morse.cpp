@@ -26,10 +26,3 @@ void loadMorseTable() {
 
     fin.close();
 }
-
-
-int main() {
-    loadMorseTable();
-    return 0;
-
-}
