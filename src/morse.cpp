@@ -3,6 +3,7 @@
 #include <sstream>
 #include <string>
 #include <unordered_map>
+#include <vector>
 using namespace std;
 
 unordered_map<char, string> charToMorse;
@@ -31,26 +32,31 @@ void loadMorseTable() {
 }
 
 void morseToString() {
-    string_answer.clear();
+    string_answer.clear(); 
 
-    stringstream ss(morse);
-    string code;
-    string result;
-    while(const auto& code : morse_answer) {
-        if(code == "/") {
-            string_answer.push_back(" ");
-        } else if(morseToChar.find(code) != morseToChar.end()) {
-            string_answer.push_back(string(1, morseToChar[code]));
-        } else {
-            string_answer.push_back("?");
+    for (const auto& code : morse_answer) {
+        if (code == "/") {
+            string_answer.push_back(" "); 
         }
-	
+        else if (morseToChar.find(code) != morseToChar.end()) {
+            string_answer.push_back(string(1, morseToChar[code]));  
+        }
+        else {
+            string_answer.push_back("?");  
+        }
     }
-    
+}
+
+void saveResult(string input, string morse){
+    ofstream fout("output.txt", ios::out | ios::app);  
+    if (!fout.is_open()) {
+        cerr << "Error: cannot open output.txt for writing\n";
+        return;
+    }
+    fout << input << '\n' << morse << '\n';
 }
 
 int main(){
-
 	vector<string> input_string;
 	while(1){
 		string temp;
@@ -62,7 +68,16 @@ int main(){
 	}
   
   loadMorseTable();
+  morseToString();
+  int cnt=0;
+  while(cnt < input_string.size())
+  {
+        saveResult(morse_answer[cnt],string_answer[cnt]);
+
+        cnt++;
+  }
 
 	return 0;
 }
+
 
