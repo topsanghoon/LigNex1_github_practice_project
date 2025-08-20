@@ -1,5 +1,3 @@
-
-
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -9,6 +7,9 @@ using namespace std;
 
 unordered_map<char, string> charToMorse;
 unordered_map<string, char> morseToChar;
+
+vector<string> morse_answer;
+vector<string> string_answer;
 
 void loadMorseTable() {
     ifstream fin("../include/morse.txt");
