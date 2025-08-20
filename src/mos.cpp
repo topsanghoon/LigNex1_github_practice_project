@@ -10,9 +10,7 @@ unordered_map<string, char> morseToChar;
 
 
 void loadMorseTable(){
-fsjdfkajl
-	fkl;dsajflasdj
-	sdfjl;lkasdfjl;kj
+
 }
 
 
