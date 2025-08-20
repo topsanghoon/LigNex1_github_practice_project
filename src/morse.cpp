@@ -89,17 +89,16 @@ int main(){
 		input_string.push_back(temp);
 
 	}
-  
-  loadMorseTable();
-  StringToMorse(input_string);
-  morseToString();
-  int cnt=0;
-  while(cnt < input_string.size())
-  {
-        saveResult(morse_answer[cnt],string_answer[cnt]);
-
+	loadMorseTable();
+	StringToMorse(input_string);
+	morseToString();
+	int cnt=0;
+	ofstream fout("output.txt", ios::out | ios::app);  
+	while(cnt < input_string.size())
+	{
+		saveResult(morse_answer[cnt],string_answer[cnt]);
         cnt++;
-  }
+	}
 
 	return 0;
 }
