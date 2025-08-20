@@ -2,16 +2,25 @@
 #include <unordered_map>
 #include <fstream>
 #include <sstream>
+#include <string>
 using namespace std;
 
 unordered_map<char, string> charToMorse;
 unordered_map<string, char> morseToChar;
 
+
 void loadMorseTable(){
 
 }
 string stringToMorse(string s){
-   
+
+	string ret_string;
+	for(char c: s){
+		ret_string += charToMorse[c];
+	}
+
+	return ret_string;
+
 }
 string morseToString(const string& morse) {
 
