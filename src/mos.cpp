@@ -10,8 +10,12 @@ unordered_map<string, char> morseToChar;
 
 
 void loadMorseTable(){
-
+fsjdfkajl
+	fkl;dsajflasdj
+	sdfjl;lkasdfjl;kj
 }
+
+
 string stringToMorse(string s){
 
 	string ret_string;
