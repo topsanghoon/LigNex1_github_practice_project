@@ -19,7 +19,6 @@ void loadMorseTable() {
 
     char letter;
     string code;
-
     while (fin >> letter >> code) {
         morse_list[letter] = code;
     }
