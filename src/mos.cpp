@@ -63,7 +63,6 @@ string morseToString(const string& morse) {
     }
     return result;
 }
-
 void saveResult(string input, string morse, string output){
 
 }
