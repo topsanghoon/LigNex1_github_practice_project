@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -25,4 +26,21 @@ void loadMorseTable() {
     }
 
     fin.close();
+}
+
+int main(){
+
+	vector<string> input_string;
+	while(1){
+		string temp;
+		cin >> temp;
+
+		if(temp == "END") break;
+		input_string.push_back(temp);
+
+	}
+  
+  loadMorseTable();
+
+	return 0;
 }
