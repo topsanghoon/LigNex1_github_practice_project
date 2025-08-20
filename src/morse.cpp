@@ -82,6 +82,7 @@ void saveResult(const vector<string>& morse, const vector<string>& text) {
         fout << text[i] << '\n';
     }
     fout.close();
+
 }
 
 int main() {
